@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>For my bestie</title>
+<title>For Visi</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,600;1,500&family=Playfair+Display:ital,wght@0,600;1,500&family=Space+Grotesk:wght@500;700&family=DM+Serif+Display&family=Cormorant+Garamond:ital,wght@0,600;1,500&family=Lora:ital,wght@0,600;1,500&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
@@ -32,6 +32,7 @@ button:focus-visible{outline:3px solid var(--acc);outline-offset:3px}
 .note{color:var(--soft);font-size:.92rem;line-height:1.6;min-height:1.6em;margin-top:16px}
 .quote{font-size:clamp(1.45rem,5vw,2.1rem);font-style:italic;margin:4px 0 22px;text-shadow:0 0 20px color-mix(in srgb,var(--acc) 45%,transparent)}
 .quote:before{content:"\201C";display:block;font-size:4rem;line-height:.6;color:var(--acc)}
+.msg{margin:0 0 18px}.msg p{line-height:1.8;font-size:.97rem;margin-bottom:12px;opacity:.9}
 .meta{margin-top:20px;font-size:.78rem;color:var(--soft)}
 .hide{display:none}
 .fade{animation:in .55s cubic-bezier(.2,.7,.2,1) both}@keyframes in{from{opacity:0;transform:translateY(14px) scale(.985)}to{opacity:1;transform:none}}
@@ -84,6 +85,15 @@ button:focus-visible{outline:3px solid var(--acc);outline-offset:3px}
 .flash{animation:flash .9s}.shake{animation:shake .5s}
 @keyframes flash{50%{box-shadow:0 0 70px 14px var(--acc)}}
 @keyframes shake{20%,60%{transform:translateX(-9px)}40%,80%{transform:translateX(9px)}}
+/* love slider */
+.sl{margin:26px 0 22px}
+.sv{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px}.sv b{font-family:var(--font);font-size:1.4rem}.sv span{font-weight:600;color:var(--acc)}
+.rg{width:100%;height:10px;border-radius:99px;-webkit-appearance:none;appearance:none;outline:none;cursor:pointer;background:linear-gradient(90deg,var(--acc) var(--p,0%),color-mix(in srgb,var(--soft) 30%,transparent) var(--p,0%))}
+.rg::-webkit-slider-thumb{-webkit-appearance:none;width:28px;height:28px;border-radius:50%;background:var(--acc);border:3px solid var(--on);box-shadow:0 0 14px var(--acc)}
+.rg::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--acc);border:3px solid var(--on);box-shadow:0 0 14px var(--acc)}
+.tk{position:relative;height:2.8em;margin-top:12px;font-size:.74rem;color:var(--soft)}
+.tk i{position:absolute;top:0;transform:translateX(-50%);font-style:normal;text-align:center;line-height:1.35;white-space:nowrap}
+.tk i:first-child{transform:none}.tk i:last-child{transform:translateX(-100%);text-align:right}
 /* temporary test bar */
 #testbar{position:fixed;top:max(8px,env(safe-area-inset-top));left:50%;transform:translateX(-50%);z-index:20;width:min(214px,54vw);display:flex;flex-wrap:wrap;gap:4px;padding:6px;border-radius:14px;background:var(--card);backdrop-filter:blur(8px);border:1px dashed var(--soft);font-size:12px}
 #testbar select,#testbar input,#testbar button{font:inherit;color:var(--ink);background:transparent;border:1px solid var(--soft);border-radius:8px;padding:4px 6px;cursor:pointer}
@@ -109,14 +119,14 @@ button:focus-visible{outline:3px solid var(--acc);outline-offset:3px}
   <div class="badge" id="date"></div>
   <h1 id="h1"></h1>
   <p class="sub" id="stxt"></p>
-  <div class="q" id="sq" style="min-height:0">Will you forgive me?</div>
+  <div class="q" id="sq" style="min-height:0">Visi, will you forgive me?</div>
   <div class="row"><button class="b yes" id="sy">I forgive you</button><button class="b no" id="sn">Not yet</button></div>
   <p class="note" id="sreact"></p>
  </section>
  <section class="card hide" id="warn">
   <div class="badge">⚠️ Warning</div>
-  <h1>😡 Hold on!</h1>
-  <p class="warn-msg">You are not ready to accept the Boss's apology. Are you trying to touch the Ego of the Killer? 😡🔥</p>
+  <h1>😡 Hold on, Visi!</h1>
+  <p class="warn-msg">Visi, you are not ready to accept the Boss's apology. Are you trying to touch the Ego of the Killer? 😡🔥</p>
   <div class="row"><button class="b yes" id="wn">No</button></div>
  </section>
  <section class="card hide" id="bless">
@@ -127,7 +137,7 @@ button:focus-visible{outline:3px solid var(--acc);outline-offset:3px}
  </section>
  <section class="card hide" id="themes">
   <div class="badge">Step 1 · Your theme</div>
-  <h1>Pick a theme for this month</h1>
+  <h1>Visi, pick a theme for this month</h1>
   <p class="sub">12 themes, one for each month. You can lock only one theme per month, and each theme can be used only once.</p>
   <div class="grid" id="grid"></div>
   <button class="b yes" id="lock" disabled style="width:100%">Lock in this theme</button>
@@ -142,14 +152,39 @@ button:focus-visible{outline:3px solid var(--acc);outline-offset:3px}
  <section class="card hide" id="end">
   <div class="badge">Your quote for this month</div>
   <div class="quote" id="quote"></div>
-  <p class="note" id="bday"></p>
+  <div class="msg" id="msg"></div>
+  <p class="sub" id="tease">🎁 Another greeting is waiting for you.</p>
+  <button class="b yes" id="more" style="width:100%">Click here</button>
+ </section>
+ <section class="card hide" id="last">
+  <div class="badge">💌 See you soon</div>
+  <h1 id="lh"></h1>
+  <p class="sub" id="bday"></p>
+  <button class="b yes" id="lv" style="width:100%">Love Slider 💗</button>
   <p class="meta" id="meta"></p>
+ </section>
+ <section class="card hide" id="slide">
+  <div class="badge">💗 Love Slider</div>
+  <h1 id="sh"></h1>
+  <p class="sub">Slide to show how much you feel for me.</p>
+  <div class="sl">
+   <div class="sv"><b id="sl-l">Forgive You 🙏</b><span id="sl-p">0%</span></div>
+   <input type="range" class="rg" id="rg" min="0" max="100" value="0" aria-label="Love slider">
+   <div class="tk"><i>Forgive You<br>0%</i><i style="left:40%">Thank You<br>40%</i><i style="left:80%">Like You<br>80%</i><i style="left:100%">Love You<br>100%</i></div>
+  </div>
+  <div class="row"><button class="b no" id="sb">← Back</button><button class="b yes" id="sx">Next</button></div>
+ </section>
+ <section class="card hide" id="funny">
+  <div class="badge">😎 Oops</div>
+  <h1 id="fh"></h1>
+  <p class="warn-msg" id="ft"></p>
+  <button class="b yes" id="fok" style="width:100%">OK</button>
  </section>
 </main>
 <script>
 /* ===== EDIT THESE ===== */
 const TEST_MODE=false;                // TEMPORARY: shows the month/day tester. Set to false before sending!
-const FRIEND_NAME="Bestie";          // her name or nickname
+const FRIEND_NAME="Visi";          // her name or nickname
 const FROM_NAME="Your friend";       // your name
 const BDAY="August 23rd";            // the birthday you missed
 /* ====================== */
@@ -240,24 +275,24 @@ const ch=(k,cls)=>{const d=CH[k],a=d.a||d.c;return `<svg class="ch ${cls}" viewB
 
 // 36 quotes for a friendship of about two years (a friend you met later, not from school, college, work or the neighbourhood)
 const Q=[
-"Two years ago I didn't know how much I'd need you. Now I can't picture my days without you.",
-"We didn't grow up together, and somehow you still feel like home.",
+"{N}, two years ago I didn't know how much I'd need you. Now I can't picture my days without you.",
+"We didn't grow up together, {N}, and somehow you still feel like home.",
 "Friends who arrive later in life prove the best things aren't always the oldest.",
 "Two years is a short time to become this important to someone.",
 "I didn't plan on you, and that's exactly why you feel like a gift.",
 "Some people take a lifetime to understand me. You did it in a couple of years.",
 "You came into my life quietly and rearranged the whole place for the better.",
 "It's not how long we've known each other. It's how much of me you already understand.",
-"Meeting you was an accident. Keeping you was my best decision.",
-"In two years you've become the person I tell first, good news or bad.",
+"Meeting you was an accident, {N}. Keeping you was my best decision.",
+"In two years, {N}, you've become the person I tell first, good news or bad.",
 "You make this friendship look easy, and I know that's your doing.",
 "I'm grateful that life took a detour and let our paths cross.",
 "The best friendships don't need a long history, just honesty and effort. You gave both.",
 "Every month with you adds another reason I'm glad we met.",
 "You listen to the things I haven't said yet. That's a rare kind of friend.",
-"Somewhere in the last two years, you went from new friend to my person.",
+"Somewhere in the last two years, {N}, you went from new friend to my person.",
 "I don't count the days we've known each other. I count the days you made better.",
-"You've been steady when I wasn't. I won't forget that.",
+"{N}, you've been steady when I wasn't. I won't forget that.",
 "A friend who shows up unprompted is worth more than a hundred who promised.",
 "We found each other as adults, so this friendship is a choice we both keep making.",
 "You treat my small news like big news. Thank you for that.",
@@ -265,21 +300,36 @@ const Q=[
 "Not every good thing is old. Ours is new enough to keep surprising me.",
 "You made a new chapter of my life feel like it was always meant to be there.",
 "There's no old history to lean on with us, only choices, and you keep choosing me.",
-"Two years in, and I still look forward to your messages.",
+"Two years in, {N}, and I still look forward to your messages.",
 "You are proof that someone can feel familiar from the moment you meet them.",
-"Thank you for being easy to talk to and hard to replace.",
+"Thank you, {N}, for being easy to talk to and hard to replace.",
 "I'm lucky that a newer friend turned out to be this reliable.",
 "Our friendship isn't old, but it's deep, and I wouldn't trade it.",
-"With you, I never have to act like someone I'm not.",
+"With you, {N}, I never have to act like someone I'm not.",
 "Real friendship doesn't need decades. It needs someone like you.",
 "I hope the next two years are even better, because you make them that way.",
 "You showed up, stayed, and made everything lighter. That's the whole story.",
-"I'm glad our paths crossed. I'm gladder you stayed.",
-"Here's to the friend who became family in just two years."
+"I'm glad our paths crossed, {N}. I'm gladder you stayed.",
+"Here's to you, {N}, the friend who became family in just two years."
+];
+const MSG=[
+["{N}, I want you to know you are the best part of my life. Two years of friendship have taught me what a real friend looks like, and it looks like you.","I'm still sorry I missed your birthday. You deserved a proper wish on the day, and I hate that I let it slip. It was never because you matter less.","I hope this year brings you peace, laughter and everything you've been quietly wishing for. I'll be cheering for you, always."],
+["{N}, thank you for the way you care. You notice small things, you remember little details, and you make people feel seen. I'm lucky to be one of them.","I know a belated wish can't undo a missed day, but I hope it shows how much I treasure you. You are never an afterthought to me.","May your days be soft, your heart be light, and may someone always show up for you the way you show up for others."],
+["{N}, watching you grow over these two years has been a joy. You handle things with a patience I admire more than I ever say out loud.","I'm sorry again for forgetting your birthday. Please don't ever think it measures what you mean to me, because you mean a lot.","Keep growing at your own pace. Whatever you're building, I believe in you completely."],
+["{N}, you deserve every good thing, and I hope this month reminds you of how far you've come. You've done more than you give yourself credit for.","This greeting is my way of saying I'm proud of you, and sorry I wasn't there with a proper wish on your birthday.","Shine the way only you can. The world is brighter with you in it, and so is my life."],
+["{N}, some friends are loud about their love. You are the steady kind, the kind that stays. I don't say thank you enough for that.","I missed your birthday, and I'm truly sorry. You've never once made me feel small for my mistakes, and that says everything about you.","I hope you feel as appreciated as you make everyone around you feel."],
+["{N}, thank you for listening. Even when I couldn't find the words, you understood. That is a rare gift, and you give it so freely.","I'm sorry I forgot your birthday. I wanted to make it up to you with something that came from the heart, so here it is.","I hope your days stay calm, your sleep stays deep, and your worries stay small."],
+["{N}, your laughter is one of my favourite sounds. Two years in, you can still turn an ordinary day into a good one with a single message.","About that birthday I missed: I'm sorry, and I promise to do better. You are worth remembering every single day, not just once a year.","Keep smiling, keep being you. I'm so glad life brought us together."],
+["{N}, happy belated birthday. I'm sorry it's late, but this greeting comes from the very bottom of my heart.","You came into my life as a new friend and became one of the people I trust most. Not many people get that, and I don't take it lightly.","May this new year of your life be your gentlest and happiest yet. You deserve nothing less."],
+["{N}, if friendship had a feeling, it would feel like talking to you: warm, easy, and honest. Thank you for being exactly that.","I'm sorry I missed your day. I hope this little surprise tells you what I should have said on time: you matter to me.","I hope your heart feels full and your home feels warm."],
+["{N}, when life slows down, I find myself grateful for the people who made it better. You are at the top of that list.","I'm still sorry about your birthday. If I could, I'd go back and wish you properly. Until then, please accept this with all my love.","May everything you work for come to you, and may you never doubt how loved you are."],
+["{N}, quiet moments make me thoughtful. I think about how lucky I am that our paths crossed, and how easily they might not have.","Thank you for every conversation, every laugh and every time you made my bad day better. I'm sorry I wasn't there on your birthday.","I hope the days ahead are gentle with you, and that you are as happy as you've made me."],
+["{N}, I just want to say thank you. For being honest, for being kind, and for staying.","I'm sorry for the belated wish. I hope all these greetings together have shown you how much you mean to me.","Here's to a brighter year ahead, and to many more years of this friendship. Happy belated birthday, my friend."]
 ];
 const YE=["😊","😄","😂","🤩","🥰","😍","😆","☺️","🥳","💖"],NE=["😢","😭","🥺","😔","😞","😿","💔","🥲","😟","😩"];
 
 const $=id=>document.getElementById(id);
+const nm=t=>FRIEND_NAME+", "+(/^I[ ']/.test(t)?t:t[0].toLowerCase()+t.slice(1));   // adds her name in front of a reaction line
 const p=new URLSearchParams(location.search),now=new Date();
 const mo=((p.get("month")?+p.get("month")-1:now.getMonth())%12+12)%12;      // preview: ?month=5&day=12
 const dy=p.get("day")?+p.get("day"):now.getDate(),yr=now.getFullYear();
@@ -314,7 +364,7 @@ function react(yes,emo,card){document.body.className=yes?"happy":"sad";
  setTimeout(()=>document.body.className="",1500)}
 function party(){document.body.className="party";let k=0;const go=()=>spread(["🎉","🎂","💖","✨","🎈","🥳",...cur.em],30);go();const iv=setInterval(()=>{go();if(++k>5)clearInterval(iv)},1200)}
 
-const S=["gate","sorry","warn","bless","themes","ask","end"];
+const S=["gate","sorry","warn","bless","themes","ask","end","last","slide","funny"];
 function show(id){S.forEach(x=>$(x).classList.toggle("hide",x!==id));const e=$(id);e.classList.remove("fade");void e.offsetWidth;e.classList.add("fade")}
 
 // 0) passcode gate (only the SHA-256 hash of the answer is stored here, not the date itself)
@@ -323,18 +373,18 @@ const sha=async t=>[...new Uint8Array(await crypto.subtle.digest("SHA-256",new T
 const norm=v=>{const p=v.trim().split(/\D+/).filter(Boolean);return p.length===3?p[0].padStart(2,"0")+p[1].padStart(2,"0")+p[2]:v.replace(/\D/g,"")};
 async function enter(){let ok=false;try{ok=await sha(norm($("gin").value))===PASS_HASH}catch(e){}
  if(ok){try{sessionStorage.setItem("bff-ok","1")}catch(e){}$("gmsg").textContent="";spread(["🔓","✨","💖"],14);setTimeout(()=>show("sorry"),700)}
- else{$("gmsg").textContent="🚫 Access not provided. This surprise is only for the one who knows the answer.";const c=$("gate");c.classList.remove("shake");void c.offsetWidth;c.classList.add("shake");$("gin").select()}}
+ else{$("gmsg").textContent="🚫 Access not provided. This surprise is only for Visi, the one who knows the answer.";const c=$("gate");c.classList.remove("shake");void c.offsetWidth;c.classList.add("shake");$("gin").select()}}
 $("gbtn").onclick=enter;$("gin").onkeydown=e=>{if(e.key==="Enter")enter()};
 try{if(sessionStorage.getItem("bff-ok")==="1")show("sorry")}catch(e){}
 
 // 1) apology first
 $("date").textContent=now.toLocaleDateString(undefined,{day:"numeric",month:"long",year:"numeric"});
 $("h1").textContent="Happy belated birthday, "+FRIEND_NAME;
-$("stxt").textContent="I'm sorry. I forgot your birthday on "+BDAY+", and you deserved a proper wish on the day itself. This little surprise is my way of making it right.";
+$("stxt").textContent="I'm sorry, "+FRIEND_NAME+". I forgot your birthday on "+BDAY+", and you deserved a proper wish on the day itself. This little surprise is my way of making it right.";
 const MORE=[
-"I'm really sorry. I know a late wish isn't the same, and I should have remembered. Please give me a chance to make it right.",
-"I'm truly sorry again. You matter a lot to me, and I hate that I forgot. Please, can you forgive me?",
-"One more time, from the heart: I'm very sorry for forgetting your birthday. Please forgive me?"];
+"I'm really sorry, "+FRIEND_NAME+". I know a late wish isn't the same, and I should have remembered. Please give me a chance to make it right.",
+"I'm truly sorry again, "+FRIEND_NAME+". You matter a lot to me, and I hate that I forgot. Please, can you forgive me?",
+"One more time, from the heart, "+FRIEND_NAME+": I'm very sorry for forgetting your birthday. Please forgive me?"];
 let nope=0;
 // Yes -> blessing card. "Not yet" -> asks again with more apologies (3 times). 4th "Not yet" -> angry warning card (only a "No" button) -> blessing card.
 function sorry(yes){
@@ -344,10 +394,10 @@ function sorry(yes){
   setTimeout(()=>{$("sorry").classList.remove("shake");show("warn");spread(["😡","💢"],14)},900);return}
  react(yes,"🙏",$("sorry"));
  if(!yes){
-  $("sreact").textContent="Okay, I understand.";
-  setTimeout(()=>{$("stxt").textContent=MORE[nope-1];$("sq").textContent="Please, will you forgive me?";$("sreact").textContent="";$("sy").disabled=$("sn").disabled=false},1700);
+  $("sreact").textContent="Okay, "+FRIEND_NAME+", I understand.";
+  setTimeout(()=>{$("stxt").textContent=MORE[nope-1];$("sq").textContent="Please, "+FRIEND_NAME+", will you forgive me?";$("sreact").textContent="";$("sy").disabled=$("sn").disabled=false},1700);
   return}
- $("sreact").textContent="Thank you. You're the best.";
+ $("sreact").textContent="Thank you, "+FRIEND_NAME+". You're the best.";
  setTimeout(()=>blessing(true),1800)}
 $("sy").onclick=()=>sorry(true);$("sn").onclick=()=>sorry(false);
 $("wn").onclick=()=>blessing(false);
@@ -355,7 +405,7 @@ $("wn").onclick=()=>blessing(false);
 // welcome + blessing card, then the theme picker (or straight to questions if this month is already locked)
 function blessing(forgiven){
  $("bh").textContent="Welcome, "+FRIEND_NAME+" 🌸";
- $("bt").textContent=(forgiven?"Thank you for forgiving me. ":"Okay, okay. Welcome back. ")+"May your days be bright, your heart light, and every wish you make come true. May good health, laughter and endless blessings follow you all year long. You are loved more than you know. 🙏💖 — "+FROM_NAME;
+ $("bt").textContent=(forgiven?"Thank you for forgiving me, "+FRIEND_NAME+". ":"Okay, okay. Welcome back, "+FRIEND_NAME+". ")+"May your days be bright, your heart light, and every wish you make come true. May good health, laughter and endless blessings follow you all year long. You are loved more than you know, "+FRIEND_NAME+". 🙏💖 — "+FROM_NAME;
  spread(["🌸","✨","🙏","💖","🎊"],24);show("bless")}
 $("bgo").onclick=()=>locked?startAsk():show("themes");
 
@@ -377,16 +427,34 @@ function startAsk(){const R=rnd(mo*397+yr);picks=locked.q.map(q=>[R(),q]).sort((
 function ask(){[...dots.children].forEach((d,i)=>d.classList.toggle("on",i<=step));
  $("abadge").textContent=locked.n+" · locked for this month 🔒";
  $("q").textContent=picks[step][1]+" "+picks[step][0];$("react").textContent=""}
-function answer(yes){const q=picks[step];$("react").textContent=q[yes?2:3];react(yes,q[1],$("ask"));
+function answer(yes){const q=picks[step];$("react").textContent=nm(q[yes?2:3]);react(yes,q[1],$("ask"));
  $("y").disabled=$("n").disabled=true;
  setTimeout(()=>{$("y").disabled=$("n").disabled=false;step++;step<picks.length?ask():finish()},1700)}
 $("y").onclick=()=>answer(true);$("n").onclick=()=>answer(false);
 
+// friendship message: a different one every month in a shuffled order, none repeats within a cycle of 12 months
+function perm(c){const R=rnd(c*7919+13);return MSG.map((_,i)=>[R(),i]).sort((x,y)=>x[0]-y[0]).map(x=>x[1])}
+function msgIdx(){const n=yr*12+mo,c=Math.floor(n/12),a=perm(c),b=perm(c-1);if(a[0]===b[MSG.length-1])[a[0],a[1]]=[a[1],a[0]];return a[n%12]}
 // 4) quote for this month
-function finish(){$("quote").textContent=Q[(mo*3+dy%3)%Q.length];
- $("bday").textContent="Belated happy birthday, "+FRIEND_NAME+". Come back next month: new buddies, a new theme to choose, and a new quote. — "+FROM_NAME;
+function finish(){$("quote").textContent=Q[(mo*3+dy%3)%Q.length].replace(/\{N\}/g,FRIEND_NAME);
+ $("msg").innerHTML=MSG[msgIdx()].map(t=>"<p>"+t.replace(/\{N\}/g,FRIEND_NAME)+"</p>").join("");
+ $("tease").textContent="🎁 "+FRIEND_NAME+", another greeting is waiting for you.";
+ $("lh").textContent="Come back next month, "+FRIEND_NAME+" 💌";
+ $("bday").textContent="Another greeting is waiting for you next month, "+FRIEND_NAME+": new buddies, a new theme to choose and a new quote. It opens only then, because this month's greeting is all yours. — "+FROM_NAME;
  $("meta").textContent="Theme: "+locked.n+" 🔒 · This month's buddies: "+CH[mo].n+" & "+CH[(mo+6)%12].n;
  show("end");party()}
+$("more").onclick=()=>{show("last");spread(["💌","🎁","✨","💖"],24)};
+
+// love slider: shows 0-100% but she can only slide up to 80% (Like You); Love You stays out of reach
+const LV=[[0,"Forgive You 🙏"],[40,"Thank You 💛"],[80,"Like You 😊"],[100,"Love You 💖"]];let blk=0;
+function slv(){const r=$("rg");
+ if(+r.value>80){r.value=80;if(!blk){blk=1;const c=$("slide");c.classList.remove("shake");void c.offsetWidth;c.classList.add("shake");setTimeout(()=>blk=0,600)}}
+ const v=+r.value;r.style.setProperty("--p",v+"%");$("sl-p").textContent=v+"%";$("sl-l").textContent=LV.filter(x=>x[0]<=v).pop()[1]}
+$("rg").oninput=slv;
+$("lv").onclick=()=>{$("sh").textContent="How much do you feel for me, "+FRIEND_NAME+"?";slv();show("slide")};
+$("sb").onclick=()=>show("end");
+$("sx").onclick=()=>{$("fh").textContent="Gotcha, "+FRIEND_NAME+"! 😎";$("ft").textContent="You can't love me more than I love myself. That's why the slider won't move to Love You.";spread(["😎","😂","🤣","💖"],20);show("funny")};
+$("fok").onclick=()=>show("slide");
 
 // TEMPORARY tester: any month/day, arrows to step months, and a button to clear this month's theme locks
 if(TEST_MODE){
