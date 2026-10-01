@@ -168,9 +168,9 @@ button:focus-visible{outline:3px solid var(--acc);outline-offset:3px}
   <h1 id="sh"></h1>
   <p class="sub">Slide to show how much you feel for me.</p>
   <div class="sl">
-   <div class="sv"><b id="sl-l">Forgive You 🙏</b><span id="sl-p">0%</span></div>
+   <div class="sv"><b id="sl-l">Forgive You 🙏</b><span id="sl-p">0% / 100%</span></div>
    <input type="range" class="rg" id="rg" min="0" max="100" value="0" aria-label="Love slider">
-   <div class="tk"><i>Forgive You<br>0%</i><i style="left:40%">Thank You<br>40%</i><i style="left:80%">Like You<br>80%</i><i style="left:100%">Love You<br>100%</i></div>
+   <div class="tk"><i>Forgive<br>You</i><i style="left:40%">Thank<br>You</i><i style="left:80%">Like<br>You</i><i style="left:100%">Love<br>You</i></div>
   </div>
   <div class="row"><button class="b no" id="sb">← Back</button><button class="b yes" id="sx">Next</button></div>
  </section>
@@ -449,7 +449,7 @@ $("more").onclick=()=>{show("last");spread(["💌","🎁","✨","💖"],24)};
 const LV=[[0,"Forgive You 🙏"],[40,"Thank You 💛"],[80,"Like You 😊"],[100,"Love You 💖"]];let blk=0;
 function slv(){const r=$("rg");
  if(+r.value>80){r.value=80;if(!blk){blk=1;const c=$("slide");c.classList.remove("shake");void c.offsetWidth;c.classList.add("shake");setTimeout(()=>blk=0,600)}}
- const v=+r.value;r.style.setProperty("--p",v+"%");$("sl-p").textContent=v+"%";$("sl-l").textContent=LV.filter(x=>x[0]<=v).pop()[1]}
+ const v=+r.value;r.style.setProperty("--p",v+"%");$("sl-p").textContent=v+"% / 100%";$("sl-l").textContent=LV.filter(x=>x[0]<=v).pop()[1]}
 $("rg").oninput=slv;
 $("lv").onclick=()=>{$("sh").textContent="How much do you feel for me, "+FRIEND_NAME+"?";slv();show("slide")};
 $("sb").onclick=()=>show("end");
