@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>For my bestie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,600;1,500&family=Playfair+Display:ital,wght@0,600;1,500&family=Space+Grotesk:wght@500;700&family=DM+Serif+Display&family=Cormorant+Garamond:ital,wght@0,600;1,500&family=Lora:ital,wght@0,600;1,500&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff;--bg2:#eee;--ink:#1d1d22;--soft:#6b6b78;--acc:#d9480f;--on:#fff;--card:rgba(255,255,255,.72);--r:26px;--font:'Fraunces',Georgia,serif;--pat:none}
+:root[data-theme=dark]{--card:rgba(16,16,24,.62);--ink:#f4f4f8;--soft:#b4b4c2}
+*{box-sizing:border-box;margin:0}
+html,body{min-height:100%}
+body{font-family:'Poppins',system-ui,sans-serif;color:var(--ink);background:var(--pat),linear-gradient(160deg,var(--bg),var(--bg2));background-attachment:fixed;display:flex;align-items:center;justify-content:center;min-height:100dvh;padding:calc(92px + env(safe-area-inset-top)) 18px calc(108px + env(safe-area-inset-bottom));transition:color .4s}
+#toggle{position:fixed;top:max(14px,env(safe-area-inset-top));right:14px;z-index:20;width:44px;height:44px;border-radius:50%;border:1px solid color-mix(in srgb,var(--soft) 50%,transparent);background:var(--card);color:var(--ink);font-size:19px;cursor:pointer;backdrop-filter:blur(10px)}
+main{position:relative;z-index:1;width:100%;max-width:580px}
+.card{position:relative;background:var(--card);backdrop-filter:blur(18px) saturate(140%);border-radius:var(--r);padding:clamp(26px,6vw,44px);box-shadow:0 30px 70px -28px color-mix(in srgb,var(--acc) 55%,transparent)}
+.card::before{content:"";position:absolute;inset:0;padding:1px;border-radius:inherit;background:linear-gradient(135deg,var(--acc),transparent 55%,var(--acc));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;opacity:.8}
+.badge{display:inline-flex;gap:6px;align-items:center;font-size:.78rem;color:var(--soft);margin-bottom:16px;padding:5px 12px;border-radius:99px;background:color-mix(in srgb,var(--acc) 12%,transparent)}
+h1,.q,.quote{font-family:var(--font);line-height:1.18;letter-spacing:-.01em}
+h1{font-size:clamp(1.7rem,5.4vw,2.4rem);margin-bottom:14px;text-shadow:0 0 24px color-mix(in srgb,var(--acc) 35%,transparent)}
+.sub{color:var(--soft);line-height:1.7;margin-bottom:24px;max-width:48ch;font-size:.97rem}
+.q{font-size:clamp(1.35rem,4.8vw,1.8rem);margin:6px 0 24px;min-height:2.4em}
+.dots{display:flex;gap:6px;margin-bottom:14px}.dots i{height:4px;flex:1;border-radius:9px;background:var(--soft);opacity:.25;transition:.4s}.dots i.on{background:var(--acc);opacity:1;box-shadow:0 0 10px var(--acc)}
+.row{display:flex;gap:12px;flex-wrap:wrap}
+.b{flex:1;min-width:130px;padding:15px 20px;border-radius:calc(var(--r)/1.7);border:1.5px solid var(--acc);font:600 .98rem 'Poppins',sans-serif;cursor:pointer;transition:transform .2s,box-shadow .2s,opacity .2s}
+.yes{background:var(--acc);color:var(--on);box-shadow:0 8px 24px -8px var(--acc)}.no{background:transparent;color:var(--ink)}
+.b:hover:not(:disabled){transform:translateY(-2px)}.b:active:not(:disabled){transform:scale(.97)}
+.b:disabled{opacity:.5;cursor:not-allowed}
+button:focus-visible{outline:3px solid var(--acc);outline-offset:3px}
+.note{color:var(--soft);font-size:.92rem;line-height:1.6;min-height:1.6em;margin-top:16px}
+.quote{font-size:clamp(1.45rem,5vw,2.1rem);font-style:italic;margin:4px 0 22px;text-shadow:0 0 20px color-mix(in srgb,var(--acc) 45%,transparent)}
+.quote:before{content:"\201C";display:block;font-size:4rem;line-height:.6;color:var(--acc)}
+.meta{margin-top:20px;font-size:.78rem;color:var(--soft)}
+.hide{display:none}
+.fade{animation:in .55s cubic-bezier(.2,.7,.2,1) both}@keyframes in{from{opacity:0;transform:translateY(14px) scale(.985)}to{opacity:1;transform:none}}
+/* theme picker */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:22px}
+.tc{position:relative;display:grid;gap:4px;text-align:left;padding:14px;border-radius:calc(var(--r)/1.6);border:1.5px solid color-mix(in srgb,var(--soft) 35%,transparent);background:color-mix(in srgb,var(--card) 70%,transparent);color:var(--ink);font:inherit;cursor:pointer;transition:.25s}
+.tc b{font-size:.95rem;margin-top:6px}.tc small{color:var(--soft);font-size:.78rem}.tc span{position:absolute;top:12px;right:12px;font-size:20px}
+.tc:hover{transform:translateY(-2px)}
+.tc.sel{border-color:var(--acc);box-shadow:0 0 0 3px color-mix(in srgb,var(--acc) 25%,transparent),0 0 24px -4px var(--acc)}
+.sw{width:34px;height:34px;border-radius:50%;box-shadow:0 0 14px color-mix(in srgb,var(--acc) 50%,transparent)}
+#warn{--acc:#e03131;--on:#fff}
+.warn-msg{font-size:1.15rem;line-height:1.6;margin:6px 0 24px;font-weight:500}
+.tc:disabled{opacity:.45;cursor:not-allowed;transform:none}
+.in{width:100%;padding:15px 18px;border-radius:calc(var(--r)/1.7);border:1.5px solid var(--acc);background:transparent;color:var(--ink);font:500 1rem 'Poppins',sans-serif;margin-bottom:14px}
+#gmsg{color:#e03131;font-weight:600}
+/* card styles by chosen theme */
+[data-sty=neon] .card{box-shadow:0 0 18px color-mix(in srgb,var(--acc) 70%,transparent),0 0 60px color-mix(in srgb,var(--acc) 35%,transparent),inset 0 0 22px color-mix(in srgb,var(--acc) 18%,transparent)}
+[data-sty=paper] .card{backdrop-filter:none;background:color-mix(in srgb,var(--bg) 88%,#fff);box-shadow:8px 8px 0 color-mix(in srgb,var(--acc) 55%,transparent)}
+[data-sty=paper] .card::before{opacity:1;background:var(--acc);-webkit-mask:none;mask:none;inset:10px;border:1.5px dashed var(--acc);background:none;padding:0;border-radius:calc(var(--r) - 8px);opacity:.5}
+/* cartoon buddies: one top-left, one bottom-right */
+.corner{position:fixed;z-index:0;width:clamp(64px,16vw,100px);pointer-events:none}
+.tl{top:max(12px,env(safe-area-inset-top));left:12px}
+.br{bottom:max(12px,env(safe-area-inset-bottom));right:12px}
+.ch{width:100%;height:auto;overflow:visible;filter:drop-shadow(0 0 14px var(--acc));animation:bob 3s ease-in-out infinite}
+.br .ch{animation-delay:-1.5s}
+.eye{animation:blink 4s infinite;transform-box:fill-box;transform-origin:center}
+@keyframes blink{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.1)}}
+@keyframes bob{50%{transform:translateY(-6px)}}
+.mh,.ms,.tear{display:none}
+.happy .mi,.party .mi,.sad .mi{display:none}
+.happy .mh,.party .mh,.sad .ms,.sad .tear{display:block}
+.happy .ch{animation:jump .6s 2}
+.party .ch{animation:dance .6s infinite alternate}
+.sad .ch{animation:droop 1s both}
+.tear{animation:tear 1.1s infinite}
+.arm{transform-box:fill-box;transform-origin:50% 10%}
+.happy .arm,.party .arm{animation:wave .35s infinite alternate}
+@keyframes jump{0%,100%{transform:none}40%{transform:translateY(-34px) rotate(-7deg)}70%{transform:translateY(-8px) rotate(6deg)}}
+@keyframes dance{from{transform:translateY(0) rotate(-6deg)}to{transform:translateY(-14px) rotate(6deg)}}
+@keyframes droop{to{transform:translateY(10px) scaleY(.93)}}
+@keyframes tear{from{transform:translateY(0);opacity:1}to{transform:translateY(16px);opacity:0}}
+@keyframes wave{from{transform:rotate(-25deg)}to{transform:rotate(25deg)}}
+/* emojis everywhere */
+.sp{position:fixed;pointer-events:none;z-index:9;opacity:0;animation:sp 2.2s ease-out forwards;filter:drop-shadow(0 0 8px var(--acc))}
+@keyframes sp{0%{opacity:0;transform:scale(.2) rotate(-20deg)}25%{opacity:1;transform:scale(1.15)}100%{opacity:0;transform:translateY(-70px) scale(.9) rotate(15deg)}}
+.big{position:fixed;top:16vh;left:50%;font-size:64px;z-index:10;pointer-events:none;filter:drop-shadow(0 0 18px var(--acc));animation:moodp 1.7s ease-out forwards}
+@keyframes moodp{0%{opacity:0;transform:translate(-50%,24px) scale(.4)}25%{opacity:1;transform:translate(-50%,0) scale(1.3)}100%{opacity:0;transform:translate(-50%,-60px) scale(1)}}
+.drop{position:fixed;top:-20px;font-size:20px;pointer-events:none;z-index:9;animation:fall 1.3s linear forwards}
+@keyframes fall{to{transform:translateY(105vh)}}
+.flash{animation:flash .9s}.shake{animation:shake .5s}
+@keyframes flash{50%{box-shadow:0 0 70px 14px var(--acc)}}
+@keyframes shake{20%,60%{transform:translateX(-9px)}40%,80%{transform:translateX(9px)}}
+/* temporary test bar */
+#testbar{position:fixed;top:max(8px,env(safe-area-inset-top));left:50%;transform:translateX(-50%);z-index:20;width:min(214px,54vw);display:flex;flex-wrap:wrap;gap:4px;padding:6px;border-radius:14px;background:var(--card);backdrop-filter:blur(8px);border:1px dashed var(--soft);font-size:12px}
+#testbar select,#testbar input,#testbar button{font:inherit;color:var(--ink);background:transparent;border:1px solid var(--soft);border-radius:8px;padding:4px 6px;cursor:pointer}
+#testbar select{flex:1;min-width:0}#testbar input{width:46px}#testbar .w{flex:1}
+.toast{position:fixed;left:50%;bottom:max(16px,env(safe-area-inset-bottom));transform:translateX(-50%);z-index:30;max-width:90vw;padding:10px 14px;border-radius:12px;background:#111;color:#fff;font-size:12px;line-height:1.5}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<button id="toggle" aria-label="Switch light or dark theme">🌙</button>
+<div class="corner tl" id="c1"></div>
+<div class="corner br" id="c2"></div>
+<main>
+ <section class="card" id="gate">
+  <div class="badge">🔒 Private surprise</div>
+  <h1>Who's there?</h1>
+  <p class="sub">Answer this to enter: <b>When did you first message the Killer?</b> (DD/MM/YYYY)</p>
+  <input class="in" id="gin" inputmode="numeric" autocomplete="off" placeholder="DD/MM/YYYY" aria-label="Date you first messaged the Killer">
+  <button class="b yes" id="gbtn" style="width:100%">Enter</button>
+  <p class="note" id="gmsg"></p>
+ </section>
+ <section class="card hide" id="sorry">
+  <div class="badge" id="date"></div>
+  <h1 id="h1"></h1>
+  <p class="sub" id="stxt"></p>
+  <div class="q" id="sq" style="min-height:0">Will you forgive me?</div>
+  <div class="row"><button class="b yes" id="sy">I forgive you</button><button class="b no" id="sn">Not yet</button></div>
+  <p class="note" id="sreact"></p>
+ </section>
+ <section class="card hide" id="warn">
+  <div class="badge">⚠️ Warning</div>
+  <h1>😡 Hold on!</h1>
+  <p class="warn-msg">You are not ready to accept the Boss's apology. Are you trying to touch the Ego of the Killer? 😡🔥</p>
+  <div class="row"><button class="b yes" id="wn">No</button></div>
+ </section>
+ <section class="card hide" id="bless">
+  <div class="badge">🌸 Welcome</div>
+  <h1 id="bh"></h1>
+  <p class="sub" id="bt"></p>
+  <button class="b yes" id="bgo" style="width:100%">Choose my theme ✨</button>
+ </section>
+ <section class="card hide" id="themes">
+  <div class="badge">Step 1 · Your theme</div>
+  <h1>Pick a theme for this month</h1>
+  <p class="sub">12 themes, one for each month. You can lock only one theme per month, and each theme can be used only once.</p>
+  <div class="grid" id="grid"></div>
+  <button class="b yes" id="lock" disabled style="width:100%">Lock in this theme</button>
+ </section>
+ <section class="card hide" id="ask">
+  <div class="badge" id="abadge"></div>
+  <div class="dots" id="dots"></div>
+  <div class="q" id="q"></div>
+  <div class="row"><button class="b yes" id="y">Yes</button><button class="b no" id="n">No</button></div>
+  <p class="note" id="react"></p>
+ </section>
+ <section class="card hide" id="end">
+  <div class="badge">Your quote for this month</div>
+  <div class="quote" id="quote"></div>
+  <p class="note" id="bday"></p>
+  <p class="meta" id="meta"></p>
+ </section>
+</main>
+<script>
+/* ===== EDIT THESE ===== */
+const TEST_MODE=false;                // TEMPORARY: shows the month/day tester. Set to false before sending!
+const FRIEND_NAME="Bestie";          // her name or nickname
+const FROM_NAME="Your friend";       // your name
+const BDAY="August 23rd";            // the birthday you missed
+/* ====================== */
+
+// 12 themes (one per month of the year); each can be used only once. Each has its own question pool; each has its own look and its own question pool: [question, emoji, if yes, if no]
+const THEMES=[
+{id:"cozy",m:9,n:"Cozy Sunset",tag:"Warm and golden",f:"'Fraunces'",lb:"#fff3e8",lb2:"#ffc79c",db:"#24120a",db2:"#52250f",a:"#d9480f",ad:"#ff8a4c",r:"26px",sty:"glass",pat:"none",em:["🌅","☕","🧡","🍂"],q:[
+["Is a warm evening chat your favourite kind of calm?","☕","Then pull up a chair, friend.","Then we'll chat in the daytime."],
+["Do you stop to watch a good sunset?","🌅","Same. It resets my whole day.","Then I'll send you photos."],
+["Would you rather stay in with a blanket than go out?","🧣","Cozy mode: approved.","Adventure mode: approved too."],
+["Does a cup of something warm fix most days?","🍵","It really does.","Then I'll find your real fix."],
+["Do you save your best stories for people you trust?","🧡","That's why I love listening.","I'll earn those stories."]]},
+{id:"ocean",m:6,n:"Ocean Calm",tag:"Cool and steady",f:"'Space Grotesk'",lb:"#e8f7f8",lb2:"#a6dde3",db:"#071c20",db2:"#0e4450",a:"#0b7285",ad:"#3bc9db",r:"16px",sty:"neon",pat:"repeating-linear-gradient(100deg,rgba(11,114,133,.08) 0 2px,transparent 2px 24px)",em:["🌊","🐚","💙","🫧"],q:[
+["Do you feel calmer near water?","🌊","Same. The waves know things.","Then mountains are your thing."],
+["Would you take a spontaneous beach trip with me?","🏖️","Pack light, we leave at sunrise.","Fine, a sunset walk then."],
+["Do you trust gentle people more?","🐚","Me too. They're rare.","Bold people have their charm too."],
+["Do you think deep conversations matter?","💙","They really do.","Light talks are great too."],
+["Can silence feel comfortable between friends?","🌬️","That's the best sign.","Then we'll fill it with jokes."]]},
+{id:"rose",m:1,n:"Rose Quartz",tag:"Soft and sweet",f:"'Playfair Display'",lb:"#fff0f4",lb2:"#ffc6d6",db:"#2a0e19",db2:"#4e1a31",a:"#c2255c",ad:"#f06595",r:"34px",sty:"paper",pat:"none",em:["💗","🎀","🍡","🩷"],q:[
+["Do you like being surprised with small gifts?","🎀","Noted. Small gifts incoming.","Noted. Words only, then."],
+["Is a kind message enough to brighten your day?","💗","Then you'll get plenty.","Then I'll bring snacks too."],
+["Do you believe good friends are a bit of luck?","🍡","Lucky me, then.","Then it was all effort. Even better."],
+["Do you smile when a friend's message arrives?","🩷","I hope it's mine.","I'll send funnier ones."],
+["Would you pick dessert first?","🍰","The only correct answer.","Bold. I'll still steal a bite."]]},
+{id:"night",m:11,n:"Midnight Stars",tag:"Deep and dreamy",f:"'Cormorant Garamond'",lb:"#eceeff",lb2:"#b8c0ff",db:"#080a22",db2:"#1a1d5a",a:"#4c4fd6",ad:"#8c8fff",r:"30px",sty:"neon",pat:"radial-gradient(circle at 78% 8%,rgba(76,79,214,.2),transparent 42%)",em:["⭐","🌙","✨","🌠"],q:[
+["Do you make wishes on shooting stars?","🌠","I hope all of them come true.","Then I'll wish for you."],
+["Are you a night owl?","🦉","Same. Midnight chats rule.","Early bird, respect."],
+["Do you believe good things take time?","⏳","They're worth the wait.","Then let's speed things up."],
+["Do you look at the sky when you're thinking?","🌙","Same. It helps me too.","Then try it tonight."],
+["Can friendship be a quiet kind of magic?","✨","Ours certainly is.","Then I'll add some sparkle."]]},
+{id:"forest",m:3,n:"Forest Mist",tag:"Fresh and grounded",f:"'Lora'",lb:"#eef7ea",lb2:"#b5d8a8",db:"#0e1c12",db2:"#1d3b25",a:"#2f7d32",ad:"#69db7c",r:"14px",sty:"paper",pat:"repeating-linear-gradient(45deg,rgba(47,125,50,.07) 0 12px,transparent 12px 24px)",em:["🍃","🌿","🦉","🍄"],q:[
+["Do you feel recharged after a quiet walk?","🌿","A slow walk fixes a lot.","Then a fast one, maybe?"],
+["Would you take a mountain trip with friends?","⛰️","Count me in, snacks included.","Then a cozy cabin stay."],
+["Do you love the smell of rain on earth?","🌧️","The best smell, honestly.","Then fresh bread, maybe?"],
+["Do you think patience is a superpower?","🍃","Absolutely. And you have it.","Then I'll practise it for you."],
+["Do you like keeping things simple?","🪵","Simple is underrated.","Then we'll add glitter."]]},
+{id:"gold",m:4,n:"Golden Hour",tag:"Bright and proud",f:"'DM Serif Display'",lb:"#fffaea",lb2:"#f5de8c",db:"#1e1904",db2:"#433707",a:"#9a6f00",ad:"#ffd43b",r:"20px",sty:"glass",pat:"linear-gradient(135deg,rgba(154,111,0,.07) 25%,transparent 25%) 0 0/40px 40px",em:["✨","🏆","💛","🍯"],q:[
+["Do you think you deserve more good things?","🏆","Yes. And they're on the way.","Then I'll keep reminding you."],
+["Are you proud of how far you've come?","🥇","You should be, truly.","Take a moment. You've done a lot."],
+["Do you believe in celebrating small wins?","🎉","Then let's celebrate today.","Then we'll start with this one."],
+["Do you shine most when you're being yourself?","💛","Always. Never change.","Then let's work on that together."],
+["Do you want more good days ahead?","🍯","They're coming. Promise.","Then let's plan some together."]]},
+{id:"frost",m:0,n:"Frosty Fresh Start",tag:"Crisp and bright",f:"'Space Grotesk'",lb:"#eaf4ff",lb2:"#b9d9f5",db:"#071624",db2:"#0f3350",a:"#1971c2",ad:"#74c0fc",r:"18px",sty:"glass",pat:"radial-gradient(circle at 20% 10%,rgba(25,113,194,.15),transparent 40%)",em:["❄️","⛄","💎","🧊"],q:[
+["Do you love a fresh start in the new year?","❄️","New year, new you. Let's go.","Then we'll keep the good old stuff."],
+["Is a hot drink on a cold morning pure joy?","☕","Pure joy, agreed.","Then ice cream in winter it is."],
+["Do you set small goals for yourself?","🎯","Small goals add up. Proud of you.","Then let's just enjoy the ride."]]},
+{id:"mint",m:2,n:"Spring Mint",tag:"Fresh and light",f:"'Playfair Display'",lb:"#e6fcf5",lb2:"#96f2d7",db:"#06201a",db2:"#0b4a3a",a:"#087f5b",ad:"#38d9a9",r:"24px",sty:"paper",pat:"none",em:["🌱","🌼","🦋","🍀"],q:[
+["Do flowers make you smile?","🌼","Then I'll bring you a bunch.","Then I'll bring chocolates."],
+["Do you enjoy a fresh start after a long winter?","🌱","Me too. Growth looks good on you.","Then we'll keep things cozy."],
+["Would you chase butterflies with me?","🦋","Race you there.","Then I'll watch and cheer."]]},
+{id:"rain",m:5,n:"Monsoon Rain",tag:"Moody and gentle",f:"'Cormorant Garamond'",lb:"#eef1f4",lb2:"#b9c4cf",db:"#0d1319",db2:"#243241",a:"#3f5a73",ad:"#8fb3d1",r:"22px",sty:"neon",pat:"repeating-linear-gradient(100deg,rgba(63,90,115,.08) 0 1px,transparent 1px 14px)",em:["🌧️","☔","💧","🌈"],q:[
+["Do you love the sound of rain at night?","🌧️","Same. Best sleep ever.","Then I'll find your lullaby."],
+["Is a rainy day perfect for hot tea and snacks?","☔","Snacks are on me.","Then a movie plan instead."],
+["Do you jump in puddles when nobody's looking?","💧","Your secret is safe with me.","Then I'll do it for both of us."]]},
+{id:"party",m:7,n:"Confetti Party",tag:"Loud and joyful",f:"'Fraunces'",lb:"#fff0f0",lb2:"#ffc9c9",db:"#240808",db2:"#511414",a:"#e03131",ad:"#ff8787",r:"28px",sty:"neon",pat:"radial-gradient(circle at 15% 20%,rgba(224,49,49,.14) 0 6px,transparent 7px) 0 0/46px 46px",em:["🎉","🎂","🎈","🥳"],q:[
+["Do you love a surprise party?","🎉","Noted. Planning one now.","Then a quiet dinner it is."],
+["Is cake the best part of any birthday?","🎂","Obviously. Extra slice for you.","Then I'll eat yours. Kidding."],
+["Would you dance at your own party?","🥳","That's the spirit!","Then I'll dance for you."]]},
+{id:"harvest",m:8,n:"Harvest Moon",tag:"Warm and earthy",f:"'Lora'",lb:"#f8f0e8",lb2:"#dcbfa0",db:"#1c130b",db2:"#43301d",a:"#8d5524",ad:"#e0a96d",r:"16px",sty:"paper",pat:"none",em:["🌾","🍁","🌕","🥧"],q:[
+["Do you like the first cool breeze of the season?","🍁","The season of feeling good.","Then summer stays in our hearts."],
+["Is a home-cooked meal the best kind of love?","🥧","Absolutely. Seconds, please.","Then we'll order in."],
+["Do you like looking at a big bright moon?","🌕","It looks better with you around.","Then stars are your thing."]]},
+{id:"plum",m:10,n:"Plum Dusk",tag:"Rich and calm",f:"'DM Serif Display'",lb:"#f8eefb",lb2:"#e0b8ee",db:"#1a0b20",db2:"#3d1a4a",a:"#862e9c",ad:"#da77f2",r:"30px",sty:"glass",pat:"linear-gradient(135deg,rgba(134,46,156,.08) 25%,transparent 25%) 0 0/36px 36px",em:["🍇","🔮","💜","🌌"],q:[
+["Do you enjoy the quiet of early evenings?","🌌","Same. The day finally slows down.","Then nights are yours."],
+["Do you get cozy and reflective near the end of the year?","💜","Me too. It's a good feeling.","Then keep that energy going."],
+["Do you think good things come to those who wait?","🔮","I believe it too.","Then let's go get them."]]}
+];
+
+// 12 buddies, one per month; each month shows two (top-left and bottom-right)
+const CH=[
+{n:"Bear",c:"#c98a5b",c2:"#f3d9b8",e:'<circle cx="26" cy="32" r="15" fill="#c98a5b"/><circle cx="94" cy="32" r="15" fill="#c98a5b"/><circle cx="26" cy="32" r="8" fill="#f3d9b8"/><circle cx="94" cy="32" r="8" fill="#f3d9b8"/>'},
+{n:"Kitty",c:"#ffc2d9",c2:"#fff",e:'<path d="M10 44 L20 2 L52 26Z" fill="#ffc2d9"/><path d="M110 44 L100 2 L68 26Z" fill="#ffc2d9"/><path d="M19 32 L22 14 L38 26Z" fill="#ff9fbf"/><path d="M101 32 L98 14 L82 26Z" fill="#ff9fbf"/>',x:'<path d="M30 62 H12 M30 68 L12 74 M90 62 H108 M90 68 L108 74" stroke="#222" stroke-width="1.8" stroke-linecap="round" opacity=".6"/>'},
+{n:"Bunny",c:"#e9e1ff",c2:"#fff",e:'<ellipse cx="40" cy="4" rx="12" ry="32" fill="#e9e1ff"/><ellipse cx="80" cy="4" rx="12" ry="32" fill="#e9e1ff"/><ellipse cx="40" cy="6" rx="6" ry="22" fill="#ffb3c7"/><ellipse cx="80" cy="6" rx="6" ry="22" fill="#ffb3c7"/>',x:'<path d="M48 90 L60 96 L72 90 L72 104 L60 98 L48 104Z" fill="#ff6fa0"/>'},
+{n:"Panda",c:"#ffffff",c2:"#f1f1f1",a:"#2a2a2e",e:'<circle cx="26" cy="32" r="14" fill="#2a2a2e"/><circle cx="94" cy="32" r="14" fill="#2a2a2e"/>',m:'<ellipse cx="45" cy="52" rx="10" ry="12" fill="#2a2a2e" transform="rotate(20 45 52)"/><ellipse cx="75" cy="52" rx="10" ry="12" fill="#2a2a2e" transform="rotate(-20 75 52)"/>'},
+{n:"Fox",c:"#f28c38",c2:"#fff3e6",e:'<path d="M10 46 L18 2 L52 26Z" fill="#f28c38"/><path d="M110 46 L102 2 L68 26Z" fill="#f28c38"/><path d="M20 34 L22 14 L38 26Z" fill="#fff3e6"/><path d="M100 34 L98 14 L82 26Z" fill="#fff3e6"/>',m:'<ellipse cx="36" cy="72" rx="18" ry="11" fill="#fff"/><ellipse cx="84" cy="72" rx="18" ry="11" fill="#fff"/>'},
+{n:"Froggy",c:"#7bcf6a",c2:"#e7f9d4",e:'<circle cx="34" cy="26" r="14" fill="#7bcf6a"/><circle cx="86" cy="26" r="14" fill="#7bcf6a"/>'},
+{n:"Penguin",c:"#33415c",c2:"#ffffff",m:'<ellipse cx="60" cy="62" rx="30" ry="28" fill="#fff"/>',x:'<path d="M52 60 L68 60 L60 70Z" fill="#ff9f1c"/>'},
+{n:"Owl",c:"#b98c63",c2:"#f4e3cc",e:'<path d="M22 34 L26 4 L50 22Z" fill="#b98c63"/><path d="M98 34 L94 4 L70 22Z" fill="#b98c63"/>',m:'<circle cx="45" cy="52" r="14" fill="#fff"/><circle cx="75" cy="52" r="14" fill="#fff"/>',x:'<path d="M53 60 L67 60 L60 70Z" fill="#ff9f1c"/>'},
+{n:"Puppy",c:"#d9a766",c2:"#fff3df",e:'<ellipse cx="18" cy="52" rx="12" ry="24" fill="#a8743a" transform="rotate(12 18 52)"/><ellipse cx="102" cy="52" rx="12" ry="24" fill="#a8743a" transform="rotate(-12 102 52)"/>',m:'<ellipse cx="78" cy="48" rx="15" ry="16" fill="#a8743a" opacity=".7"/>'},
+{n:"Koala",c:"#b8bdc9",c2:"#f2f3f7",e:'<circle cx="20" cy="34" r="19" fill="#b8bdc9"/><circle cx="100" cy="34" r="19" fill="#b8bdc9"/><circle cx="20" cy="34" r="11" fill="#f2f3f7"/><circle cx="100" cy="34" r="11" fill="#f2f3f7"/>',x:'<ellipse cx="60" cy="58" rx="9" ry="12" fill="#3b3f4a"/>'},
+{n:"Chick",c:"#ffe066",c2:"#fff3b0",e:'<path d="M52 20 Q56 -6 62 18 Q68 -2 72 20Z" fill="#ffe066" stroke="#f4c430" stroke-width="2"/>',x:'<path d="M52 60 L68 60 L60 70Z" fill="#ff9f1c"/>'},
+{n:"Piggy",c:"#ffb3c1",c2:"#ffd6de",e:'<path d="M14 44 L24 8 L50 28Z" fill="#ffb3c1"/><path d="M106 44 L96 8 L70 28Z" fill="#ffb3c1"/>',x:'<ellipse cx="60" cy="64" rx="13" ry="9" fill="#ff8fa8"/><circle cx="55" cy="64" r="2" fill="#7a2a3d"/><circle cx="65" cy="64" r="2" fill="#7a2a3d"/>'}
+];
+const ch=(k,cls)=>{const d=CH[k],a=d.a||d.c;return `<svg class="ch ${cls}" viewBox="-8 -30 136 166" aria-hidden="true">${d.e||""}<ellipse class="arm" cx="14" cy="94" rx="10" ry="18" fill="${a}"/><ellipse class="arm" cx="106" cy="94" rx="10" ry="18" fill="${a}"/><ellipse cx="60" cy="90" rx="38" ry="34" fill="${d.c}"/><ellipse cx="60" cy="98" rx="22" ry="20" fill="${d.c2}"/><circle cx="60" cy="54" r="38" fill="${d.c}"/>${d.m||""}
+<g class="eye"><circle cx="45" cy="52" r="6" fill="#222"/><circle cx="47" cy="50" r="2" fill="#fff"/></g><g class="eye"><circle cx="75" cy="52" r="6" fill="#222"/><circle cx="77" cy="50" r="2" fill="#fff"/></g>
+<ellipse cx="33" cy="66" rx="7" ry="4" fill="#ff8fa3" opacity=".75"/><ellipse cx="87" cy="66" rx="7" ry="4" fill="#ff8fa3" opacity=".75"/><ellipse cx="60" cy="60" rx="5" ry="3.5" fill="#222"/>${d.x||""}
+<path class="mi" d="M50 68 Q60 76 70 68" stroke="#222" stroke-width="3" fill="none" stroke-linecap="round"/><path class="mh" d="M47 67 Q60 86 73 67 Z" fill="#7a1f2b"/><path class="ms" d="M50 76 Q60 66 70 76" stroke="#222" stroke-width="3" fill="none" stroke-linecap="round"/><path class="tear" d="M40 60 q-4 9 0 11 q4 -2 0 -11z" fill="#6ec6ff"/></svg>`};
+
+// 36 quotes for a friendship of about two years (a friend you met later, not from school, college, work or the neighbourhood)
+const Q=[
+"Two years ago I didn't know how much I'd need you. Now I can't picture my days without you.",
+"We didn't grow up together, and somehow you still feel like home.",
+"Friends who arrive later in life prove the best things aren't always the oldest.",
+"Two years is a short time to become this important to someone.",
+"I didn't plan on you, and that's exactly why you feel like a gift.",
+"Some people take a lifetime to understand me. You did it in a couple of years.",
+"You came into my life quietly and rearranged the whole place for the better.",
+"It's not how long we've known each other. It's how much of me you already understand.",
+"Meeting you was an accident. Keeping you was my best decision.",
+"In two years you've become the person I tell first, good news or bad.",
+"You make this friendship look easy, and I know that's your doing.",
+"I'm grateful that life took a detour and let our paths cross.",
+"The best friendships don't need a long history, just honesty and effort. You gave both.",
+"Every month with you adds another reason I'm glad we met.",
+"You listen to the things I haven't said yet. That's a rare kind of friend.",
+"Somewhere in the last two years, you went from new friend to my person.",
+"I don't count the days we've known each other. I count the days you made better.",
+"You've been steady when I wasn't. I won't forget that.",
+"A friend who shows up unprompted is worth more than a hundred who promised.",
+"We found each other as adults, so this friendship is a choice we both keep making.",
+"You treat my small news like big news. Thank you for that.",
+"I trust you with my worst days and my silliest jokes, and you handle both.",
+"Not every good thing is old. Ours is new enough to keep surprising me.",
+"You made a new chapter of my life feel like it was always meant to be there.",
+"There's no old history to lean on with us, only choices, and you keep choosing me.",
+"Two years in, and I still look forward to your messages.",
+"You are proof that someone can feel familiar from the moment you meet them.",
+"Thank you for being easy to talk to and hard to replace.",
+"I'm lucky that a newer friend turned out to be this reliable.",
+"Our friendship isn't old, but it's deep, and I wouldn't trade it.",
+"With you, I never have to act like someone I'm not.",
+"Real friendship doesn't need decades. It needs someone like you.",
+"I hope the next two years are even better, because you make them that way.",
+"You showed up, stayed, and made everything lighter. That's the whole story.",
+"I'm glad our paths crossed. I'm gladder you stayed.",
+"Here's to the friend who became family in just two years."
+];
+const YE=["😊","😄","😂","🤩","🥰","😍","😆","☺️","🥳","💖"],NE=["😢","😭","🥺","😔","😞","😿","💔","🥲","😟","😩"];
+
+const $=id=>document.getElementById(id);
+const p=new URLSearchParams(location.search),now=new Date();
+const mo=((p.get("month")?+p.get("month")-1:now.getMonth())%12+12)%12;      // preview: ?month=5&day=12
+const dy=p.get("day")?+p.get("day"):now.getDate(),yr=now.getFullYear();
+const KEY=`bff-theme-${yr}-${mo}`,mem={};
+const sget=k=>{try{return localStorage.getItem(k)}catch(e){return mem[k]}};
+const sset=(k,v)=>{try{localStorage.setItem(k,v)}catch(e){mem[k]=v}};
+
+// theme + dark/light
+let cur=THEMES[0],dark=matchMedia("(prefers-color-scheme:dark)").matches;
+try{const s=localStorage.getItem("theme");if(s)dark=s==="dark"}catch(e){}
+function paint(){const R=document.documentElement.style;document.documentElement.dataset.theme=dark?"dark":"light";
+ R.setProperty("--bg",dark?cur.db:cur.lb);R.setProperty("--bg2",dark?cur.db2:cur.lb2);R.setProperty("--acc",dark?cur.ad:cur.a);R.setProperty("--on",dark?"#12121a":"#fff");
+ R.setProperty("--r",cur.r);R.setProperty("--font",cur.f+",Georgia,serif");R.setProperty("--pat",cur.pat);document.body.dataset.sty=cur.sty;$("toggle").textContent=dark?"☀️":"🌙"}
+const apply=t=>{cur=t;paint()};
+$("toggle").onclick=()=>{dark=!dark;paint();try{localStorage.setItem("theme",dark?"dark":"light")}catch(e){}};
+let locked=THEMES.find(t=>t.id===sget(KEY))||null;
+apply(locked||THEMES[0]);
+
+// this month's two buddies
+$("c1").innerHTML=ch(mo,"a");$("c2").innerHTML=ch((mo+6)%12,"two");
+
+// screen-wide emojis, big mood emoji, rain
+function spread(list,n){for(let i=0;i<n;i++){const s=document.createElement("span");s.className="sp";s.textContent=list[i%list.length];
+ s.style.left=Math.random()*94+"vw";s.style.top=Math.random()*86+"vh";s.style.fontSize=(18+Math.random()*28)+"px";s.style.animationDelay=Math.random()*.7+"s";
+ document.body.appendChild(s);setTimeout(()=>s.remove(),3000)}}
+function big(yes){const m=document.createElement("span");m.className="big";const L=yes?YE:NE;m.textContent=L[Math.floor(Math.random()*L.length)];document.body.appendChild(m);setTimeout(()=>m.remove(),1800)}
+function rain(){for(let i=0;i<18;i++){const s=document.createElement("span");s.className="drop";s.textContent="💧";s.style.left=Math.random()*100+"vw";s.style.animationDelay=Math.random()*.6+"s";document.body.appendChild(s);setTimeout(()=>s.remove(),2100)}}
+// YES = happy jump + glow flash + happy emojis everywhere, NO = sad droop + tear + shake + sad emojis and rain
+function react(yes,emo,card){document.body.className=yes?"happy":"sad";
+ card.classList.remove("flash","shake");void card.offsetWidth;card.classList.add(yes?"flash":"shake");
+ big(yes);spread(yes?[...YE,...cur.em,emo,"💖"]:[...NE,emo],yes?36:22);if(!yes)rain();
+ setTimeout(()=>document.body.className="",1500)}
+function party(){document.body.className="party";let k=0;const go=()=>spread(["🎉","🎂","💖","✨","🎈","🥳",...cur.em],30);go();const iv=setInterval(()=>{go();if(++k>5)clearInterval(iv)},1200)}
+
+const S=["gate","sorry","warn","bless","themes","ask","end"];
+function show(id){S.forEach(x=>$(x).classList.toggle("hide",x!==id));const e=$(id);e.classList.remove("fade");void e.offsetWidth;e.classList.add("fade")}
+
+// 0) passcode gate (only the SHA-256 hash of the answer is stored here, not the date itself)
+const PASS_HASH="d68a8594b9453f2a478662ab050b565fd3c06b0b8638c922e74cdba56bd03e94";
+const sha=async t=>[...new Uint8Array(await crypto.subtle.digest("SHA-256",new TextEncoder().encode(t)))].map(b=>b.toString(16).padStart(2,"0")).join("");
+const norm=v=>{const p=v.trim().split(/\D+/).filter(Boolean);return p.length===3?p[0].padStart(2,"0")+p[1].padStart(2,"0")+p[2]:v.replace(/\D/g,"")};
+async function enter(){let ok=false;try{ok=await sha(norm($("gin").value))===PASS_HASH}catch(e){}
+ if(ok){try{sessionStorage.setItem("bff-ok","1")}catch(e){}$("gmsg").textContent="";spread(["🔓","✨","💖"],14);setTimeout(()=>show("sorry"),700)}
+ else{$("gmsg").textContent="🚫 Access not provided. This surprise is only for the one who knows the answer.";const c=$("gate");c.classList.remove("shake");void c.offsetWidth;c.classList.add("shake");$("gin").select()}}
+$("gbtn").onclick=enter;$("gin").onkeydown=e=>{if(e.key==="Enter")enter()};
+try{if(sessionStorage.getItem("bff-ok")==="1")show("sorry")}catch(e){}
+
+// 1) apology first
+$("date").textContent=now.toLocaleDateString(undefined,{day:"numeric",month:"long",year:"numeric"});
+$("h1").textContent="Happy belated birthday, "+FRIEND_NAME;
+$("stxt").textContent="I'm sorry. I forgot your birthday on "+BDAY+", and you deserved a proper wish on the day itself. This little surprise is my way of making it right.";
+const MORE=[
+"I'm really sorry. I know a late wish isn't the same, and I should have remembered. Please give me a chance to make it right.",
+"I'm truly sorry again. You matter a lot to me, and I hate that I forgot. Please, can you forgive me?",
+"One more time, from the heart: I'm very sorry for forgetting your birthday. Please forgive me?"];
+let nope=0;
+// Yes -> blessing card. "Not yet" -> asks again with more apologies (3 times). 4th "Not yet" -> angry warning card (only a "No" button) -> blessing card.
+function sorry(yes){
+ if(!yes)nope++;
+ $("sy").disabled=$("sn").disabled=true;
+ if(!yes&&nope>3){spread(["😡","🔥","💢","😤"],26);$("sorry").classList.add("shake");
+  setTimeout(()=>{$("sorry").classList.remove("shake");show("warn");spread(["😡","💢"],14)},900);return}
+ react(yes,"🙏",$("sorry"));
+ if(!yes){
+  $("sreact").textContent="Okay, I understand.";
+  setTimeout(()=>{$("stxt").textContent=MORE[nope-1];$("sq").textContent="Please, will you forgive me?";$("sreact").textContent="";$("sy").disabled=$("sn").disabled=false},1700);
+  return}
+ $("sreact").textContent="Thank you. You're the best.";
+ setTimeout(()=>blessing(true),1800)}
+$("sy").onclick=()=>sorry(true);$("sn").onclick=()=>sorry(false);
+$("wn").onclick=()=>blessing(false);
+
+// welcome + blessing card, then the theme picker (or straight to questions if this month is already locked)
+function blessing(forgiven){
+ $("bh").textContent="Welcome, "+FRIEND_NAME+" 🌸";
+ $("bt").textContent=(forgiven?"Thank you for forgiving me. ":"Okay, okay. Welcome back. ")+"May your days be bright, your heart light, and every wish you make come true. May good health, laughter and endless blessings follow you all year long. You are loved more than you know. 🙏💖 — "+FROM_NAME;
+ spread(["🌸","✨","🙏","💖","🎊"],24);show("bless")}
+$("bgo").onclick=()=>locked?startAsk():show("themes");
+
+// 2) she picks a theme once per month; it locks for that month
+const MN=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],UK=`bff-used-${yr}`;
+const used=()=>{try{return JSON.parse(sget(UK)||"{}")}catch(e){return{}}};   // {themeId: monthIndex}
+let pick=null;const grid=$("grid"),U=used();
+THEMES.slice().sort((x,y)=>x.m-y.m).forEach(t=>{const b=document.createElement("button"),taken=U[t.id]!==undefined;b.className="tc";b.disabled=taken;
+ b.innerHTML=`<i class="sw" style="background:linear-gradient(135deg,${t.lb2},${t.a})"></i><b>${t.n}</b><small>${taken?"Already used in "+MN[U[t.id]]:MN[t.m]+" · "+t.tag}</small><span>${taken?"🔒":t.em[0]}</span>`;
+ b.onclick=()=>{pick=t;[...grid.children].forEach(x=>x.classList.remove("sel"));b.classList.add("sel");apply(t);$("lock").disabled=false;spread(t.em,8)};grid.appendChild(b)});
+$("lock").onclick=()=>{if(!pick||sget(KEY))return;const u=used();if(u[pick.id]!==undefined)return;
+ u[pick.id]=mo;sset(UK,JSON.stringify(u));sset(KEY,pick.id);locked=pick;spread([...pick.em,"🔒","✨"],26);startAsk()};
+
+// 3) only 3 themed questions, chosen at random per month (same all month)
+function rnd(a){return()=>{a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+let picks=[],step=0;const dots=$("dots");
+function startAsk(){const R=rnd(mo*397+yr);picks=locked.q.map(q=>[R(),q]).sort((a,b)=>a[0]-b[0]).slice(0,3).map(x=>x[1]);step=0;
+ dots.innerHTML="";picks.forEach(()=>dots.appendChild(document.createElement("i")));show("ask");ask()}
+function ask(){[...dots.children].forEach((d,i)=>d.classList.toggle("on",i<=step));
+ $("abadge").textContent=locked.n+" · locked for this month 🔒";
+ $("q").textContent=picks[step][1]+" "+picks[step][0];$("react").textContent=""}
+function answer(yes){const q=picks[step];$("react").textContent=q[yes?2:3];react(yes,q[1],$("ask"));
+ $("y").disabled=$("n").disabled=true;
+ setTimeout(()=>{$("y").disabled=$("n").disabled=false;step++;step<picks.length?ask():finish()},1700)}
+$("y").onclick=()=>answer(true);$("n").onclick=()=>answer(false);
+
+// 4) quote for this month
+function finish(){$("quote").textContent=Q[(mo*3+dy%3)%Q.length];
+ $("bday").textContent="Belated happy birthday, "+FRIEND_NAME+". Come back next month: new buddies, a new theme to choose, and a new quote. — "+FROM_NAME;
+ $("meta").textContent="Theme: "+locked.n+" 🔒 · This month's buddies: "+CH[mo].n+" & "+CH[(mo+6)%12].n;
+ show("end");party()}
+
+// TEMPORARY tester: any month/day, arrows to step months, and a button to clear this month's theme locks
+if(TEST_MODE){
+ const b=document.createElement("div");b.id="testbar";
+ b.innerHTML='<button id="tp" aria-label="Previous month">◀</button><select id="tm" aria-label="Month">'+["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"].map((m,i)=>`<option value="${i+1}">${m}</option>`).join("")+'</select><button id="tn" aria-label="Next month">▶</button><input id="td" type="number" min="1" max="31" aria-label="Day"><button class="w" id="tg">Go</button><button class="w" id="tr">Reset locks</button>';
+ document.body.appendChild(b);
+ $("tm").value=mo+1;$("td").value=dy;
+ const D=()=>Math.min(31,Math.max(1,+$("td").value||1)),go=(m,d)=>{location.search="?month="+m+"&day="+d};
+ $("tg").onclick=()=>go($("tm").value,D());
+ $("tp").onclick=()=>go((+$("tm").value+10)%12+1,D());
+ $("tn").onclick=()=>go(+$("tm").value%12+1,D());
+ $("tr").onclick=()=>{try{Object.keys(localStorage).filter(k=>k.startsWith("bff-")).forEach(k=>localStorage.removeItem(k))}catch(e){}Object.keys(mem).forEach(k=>delete mem[k]);go($("tm").value,D())};
+}
+</script>
+</body>
+</html>
